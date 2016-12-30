@@ -12,7 +12,6 @@ class SaveBehavior
     @store()
 
   store: (content)->
-    return unless @config.data_storage.url
     return if @getLocks() > 0
 
     clearTimeout(@timeout)
@@ -41,6 +40,9 @@ class SaveBehavior
     # console.log("CONTENT CHANGED:", isChanged)
     
     return unless isChanged
+
+    @config.data_storage.save_handler(JSON.stringify(content)) if @config.data_storage.save_handler
+    return unless @config.data_storage.url
 
     @config.xhr.before_handler() if @config.xhr.before_handler
     # console.log "SAVING TO: #{@getMethod()} #{@getUrl()}"
