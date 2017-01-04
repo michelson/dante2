@@ -1,5 +1,8 @@
 # Dante II - The rematch
 
+<!-- Markdown snippet -->
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/michelson/dante2)
+
 ## just another medium clone built on top of DraftJs
 
 > Dante II is a complete rewrite of [DanteEditor](https://michelson.github.io/Dante). This version is built on top of Facebook's Draft-Js and reaches all Dante's features with a shiny ultra mega super uber maintainable architecture.
