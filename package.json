@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node_modules/.bin/webpack-dev-server  --hot --inline --config webpack.config-doc.js",
     "build": "babel-node tools/build-cli.js",
-    "lint": "eslint app tools webpack *.js",
+    "lint": "node_modules/.bin/eslint src tools webpack *.js",
     "release": "release"
   },
   "peerDependencies": {
@@ -39,7 +39,7 @@
   "devDependencies": {
     "babel-cli": "^6.11.4",
     "babel-core": "^6.13.2",
-    "babel-eslint": "^6.1.2",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.5",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-dev-expression": "^0.2.1",
@@ -56,8 +56,12 @@
     "child-process-promise": "^2.2.0",
     "colors": "^1.1.2",
     "css-loader": "^0.25.0",
-    "eslint": "1.7.2",
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
     "eslint-loader": "1.1.0",
+    "eslint-plugin-promise": "^3.4.1",
+    "eslint-plugin-react": "latest",
+    "eslint-plugin-standard": "^2.0.1",
     "expose-loader": "^0.7.1",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
