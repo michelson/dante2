@@ -83,6 +83,9 @@ class Dante {
         const { editorState } = ctx.state
         return ctx.onChange(addNewBlockAt(editorState, block.getKey()))
       },
+      handleDelete(ctx, block){
+        debugger
+      },
       widget_options: {
         displayOnInlineTooltip: true,
         insertion: "upload",
