@@ -61,7 +61,7 @@ import SaveBehavior from '../utils/save_content'
 import customHTML2Content from '../utils/html2content'
 
 
-class DanteEditor extends React.Component {
+export default class DanteEditor extends React.Component {
   constructor(props) {
     super(props)
 
@@ -927,5 +927,3 @@ class DanteEditor extends React.Component {
     )
   }
 }
-
-module.exports = DanteEditor
