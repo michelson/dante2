@@ -43,6 +43,10 @@ export default class EmbedBlock extends React.Component {
 
   componentDidMount() {
 
+    if(Object.keys(this.defaultData()).length > 0){
+      return
+    }
+
     if (!this.props.blockProps.data) {
       return
     }
@@ -57,7 +61,7 @@ export default class EmbedBlock extends React.Component {
 
     return axios({
       method: 'get',
-      url: `${ this.dataForUpdate().endpoint }${ this.dataForUpdate().provisory_text }&scheme=https`
+      url: `${ this.dataForUpdate().endpoint }${ this.dataForUpdate().provisory_text }`
     }).then(result => {
 
       return this.setState({ embed_data: result.data } //JSON.parse(data.responseText)

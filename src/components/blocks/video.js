@@ -37,6 +37,10 @@ export default class VideoBlock extends React.Component {
   }
 
   componentDidMount() {
+    
+    if(Object.keys(this.defaultData()).length > 0){
+      return
+    }
 
     if (!this.props.blockProps.data) {
       return
@@ -48,7 +52,7 @@ export default class VideoBlock extends React.Component {
 
     return axios({
       method: 'get',
-      url: `${ this.dataForUpdate().endpoint }${ this.dataForUpdate().provisory_text }&scheme=https`
+      url: `${ this.dataForUpdate().endpoint }${ this.dataForUpdate().provisory_text }`
     }).then(result => {
       return this.setState({ embed_data: result.data } //JSON.parse(data.responseText)
       , this.updateData)
@@ -65,11 +69,15 @@ export default class VideoBlock extends React.Component {
     }
   }
 
+  embedData(){
+    return this.state.embed_data.html || this.state.embed_data.media.html
+  }
+
   render() {
     return (
       <figure className='graf--figure graf--iframe graf--first' tabIndex='0'>
         <div className='iframeContainer' 
-          dangerouslySetInnerHTML={ { __html: this.state.embed_data.html } } />
+          dangerouslySetInnerHTML={ { __html: this.embedData() } } />
         <figcaption className='imageCaption'>
           <EditorBlock {...Object.assign({}, this.props, { "className": "imageCaption" })} />
         </figcaption>

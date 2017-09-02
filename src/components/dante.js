@@ -51,7 +51,8 @@ class Dante {
     defaultOptions.title_placeholder = "Title"
     defaultOptions.body_placeholder = "Write your story"
     // @defaultOptions.api_key = "86c28a410a104c8bb58848733c82f840"
-
+    defaultOptions.oembed_uri = options.oembed_uri || `//api.embed.ly/1/extract?key=${ options.api_key }&scheme=https&url=`
+    
     defaultOptions.widgets = [{
       title: 'add an image',
       icon: 'image',
@@ -113,7 +114,7 @@ class Dante {
         insert_block: "embed"
       },
       options: {
-        endpoint: `//api.embed.ly/1/extract?key=${ options.api_key }&url=`,
+        endpoint: defaultOptions.oembed_uri,
         placeholder: 'Paste a link to embed content from another site (e.g. Twitter) and press Enter'
       },
       handleEnterWithoutText(ctx, block) {
@@ -140,7 +141,7 @@ class Dante {
         insert_block: "video"
       },
       options: {
-        endpoint: `//api.embed.ly/1/oembed?key=${ options.api_key }&url=`,
+        endpoint: defaultOptions.oembed_uri,
         placeholder: 'Paste a YouTube, Vine, Vimeo, or other video link, and press Enter',
         caption: 'Type caption for embed (optional)'
       },
