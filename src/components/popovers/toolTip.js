@@ -128,8 +128,17 @@ class DanteTooltip extends React.Component {
       return
     }
 
-    let top = selectionBoundary.top - parentBoundary.top - -90 - 5
+    let top = selectionBoundary.top - parentBoundary.top 
+    
+    if(this.props.widget_options.y_offset){
+      top = this.props.widget_options.y_offset(top)
+    }    
+
     let left = selectionBoundary.left + selectionBoundary.width / 2 - padd
+
+    if(this.props.widget_options.x_offset){
+      left = this.props.widget_options.x_offset(left)
+    }
 
     if (!top || !left) {
       return

@@ -196,6 +196,12 @@ class Dante {
                           'header-three', 
                           'header-four'],
       widget_options: {
+        x_offset: function(o){
+            return o 
+        },
+        y_offset: function(o){
+            return o + 90
+        },
         placeholder: "Paste or type a link",
         block_types: [
           // {label: 'p', style: 'unstyled'},
@@ -212,13 +218,37 @@ class Dante {
       }
     }, {
       ref: 'add_tooltip',
-      component: DanteInlineTooltip
+      component: DanteInlineTooltip,
+      widget_options: {
+        x_offset: function(o){
+          return o - 60
+        },
+        y_offset: function(o){
+          return o
+        }        
+      }
     }, {
       ref: 'anchor_popover',
-      component: DanteAnchorPopover
+      component: DanteAnchorPopover,
+      widget_options: {
+        x_offset: function(o){
+          return o
+        },
+        y_offset: function(o){
+          return o + 160
+        }        
+      }
     }, {
       ref: 'image_popover',
-      component: DanteImagePopover
+      component: DanteImagePopover,
+      widget_options: {
+        x_offset: function(o){
+          return o
+        },
+        y_offset: function(o){
+          return o + 60
+        }        
+      }
     }]
 
     defaultOptions.xhr = {

@@ -110,9 +110,22 @@ class DanteImagePopover extends React.Component {
                                            .parentNode.getBoundingClientRect()
         let el = this.refs.image_popover
         let padd = el.offsetWidth / 2
+
+
+        let left = selectionBoundary.left + selectionBoundary.width / 2 - padd
+        let top =selectionBoundary.top - parentBoundary.top 
+
+        if(this.props.widget_options.x_offset){
+          left = this.props.widget_options.x_offset(left)
+        }
+
+        if(this.props.widget_options.y_offset){
+          top = this.props.widget_options.y_offset(top)
+        }
+
         return this.setPosition({
-          top: selectionBoundary.top - parentBoundary.top + 60,
-          left: selectionBoundary.left + selectionBoundary.width / 2 - padd
+          top: top,
+          left: left
         })
       }
     } else {

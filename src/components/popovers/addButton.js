@@ -233,9 +233,21 @@ class DanteInlineTooltip extends React.Component {
 
       // checkeamos si esta vacio
       this.display(block.getText().length === 0 && blockType === "unstyled")
+
+      let left = coords.left + window.pageXOffset
+      let top = coords.top + window.pageYOffset
+
+      if(this.props.widget_options.x_offset){
+        left = this.props.widget_options.x_offset(left)
+      }
+
+      if(this.props.widget_options.y_offset){
+        top = this.props.widget_options.y_offset(top)
+      }
+
       return this.setPosition({
-        top: coords.top + window.pageYOffset,
-        left: coords.left + window.pageXOffset - 60
+        top: top,
+        left: left
       })
 
       /*

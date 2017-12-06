@@ -71,9 +71,20 @@ class DanteAnchorPopover extends React.Component {
     let parent = ReactDOM.findDOMNode(this.props.editor)
     let parentBoundary = parent.getBoundingClientRect()
 
+    let left = selectionBoundary.left + selectionBoundary.width / 2 - padd
+    let top = selectionBoundary.top - parentBoundary.top
+
+    if(this.props.widget_options.x_offset){
+      left = this.props.widget_options.x_offset(left)
+    }
+
+    if(this.props.widget_options.y_offset){
+      top = this.props.widget_options.y_offset(top)
+    }
+
     return {
-      top: selectionBoundary.top - parentBoundary.top + 160,
-      left: selectionBoundary.left + selectionBoundary.width / 2 - padd
+      top: top,
+      left: left
     }
   }
 
