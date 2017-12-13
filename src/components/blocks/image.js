@@ -2,10 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import {
-  Entity, 
-  RichUtils, 
-  AtomicBlockUtils, 
-  EditorBlock, 
+  Entity,
+  RichUtils,
+  AtomicBlockUtils,
+  EditorBlock,
   EditorState } from 'draft-js'
 
 import axios from "axios"
@@ -15,6 +15,7 @@ import { updateDataOfBlock } from '../../model/index.js'
 export default class ImageBlock extends React.Component {
 
   constructor(props) {
+    console.log(props);
     super(props)
 
     this.blockPropsSrc = this.blockPropsSrc.bind(this)
@@ -228,6 +229,10 @@ export default class ImageBlock extends React.Component {
   }
 
   formatData() {
+    if (this.config.upload_storage.uploadAsBase64) {
+      return { image: this.getBase64Image(this.refs.image_tag) };
+    }
+
     let formData = new FormData()
     if (this.file) {
       let formName = this.config.upload_formName || 'file'
@@ -241,7 +246,7 @@ export default class ImageBlock extends React.Component {
   }
 
   getUploadUrl() {
-    let url = this.config.upload_url
+    let url = this.config.upload_storage.url
     if (typeof url === "function") {
       return url()
     } else {
@@ -250,22 +255,24 @@ export default class ImageBlock extends React.Component {
   }
 
   getUploadHeaders()  {
-   return this.config.upload_headers || {}
+   return this.config.upload_storage.headers || {}
   }
 
   uploadFile() {
-
     let handleUp
+    console.log(this.config);
     // custom upload handler
-    if (this.config.upload_handler) {
-      return this.config.upload_handler(this.formatData().get('file'), this)
+    if (this.config.upload_storage.handler) {
+      return this.config.upload_storage.handler(this.config.upload_storage.uploadAsBase64
+        ? this.formatData().image
+        : this.formatData().get('file'), this)
     }
-    
-    if (!this.config.upload_url){
+
+    if (!this.config.upload_storage.url){
       this.stopLoader()
       return
     }
-    
+
     axios({
       method: 'post',
       url: this.getUploadUrl(),
@@ -277,7 +284,7 @@ export default class ImageBlock extends React.Component {
     }).then(result => {
       this.uploadCompleted(result.data.url)
 
-      if (this.config.upload_callback) {
+      if (this.config.upload_storage.callback) {
         return this.config.upload_callback(result, this)
       }
     }).catch(error => {
@@ -333,25 +340,25 @@ export default class ImageBlock extends React.Component {
 
     return (
       <div ref="image_tag2" suppressContentEditableWarning={true}>
-        <div className="aspectRatioPlaceholder is-locked" 
-          style={this.coords()} 
+        <div className="aspectRatioPlaceholder is-locked"
+          style={this.coords()}
           onClick={this.handleGrafFigureSelectImg}>
-          <div style={{ paddingBottom: `${ this.state.aspect_ratio.ratio }%` }} 
+          <div style={{ paddingBottom: `${ this.state.aspect_ratio.ratio }%` }}
             className='aspect-ratio-fill' />
-          <img src={this.state.url} 
-            ref="image_tag" 
-            height={this.state.aspect_ratio.height} 
-            width={this.state.aspect_ratio.width} 
+          <img src={this.state.url}
+            ref="image_tag"
+            height={this.state.aspect_ratio.height}
+            width={this.state.aspect_ratio.width}
             className='graf-image' />
-          <Loader toggle={this.state.loading} 
+          <Loader toggle={this.state.loading}
             progress={this.state.loading_progress} />
         </div>
         <figcaption className='imageCaption' onMouseDown={this.handleFocus}>
-          { this.props.block.getText().length === 0 ? 
+          { this.props.block.getText().length === 0 ?
             <span className="danteDefaultPlaceholder">
               {this.placeholderText()}
             </span> : undefined}
-          <EditorBlock {...Object.assign({}, this.props, { 
+          <EditorBlock {...Object.assign({}, this.props, {
             "editable": true, "className": "imageCaption" })
             } />
         </figcaption>
