@@ -281,7 +281,6 @@ class DanteTooltip extends React.Component {
             className="dante-menu-input"
             ref="dante_menu_input"
             placeholder={this.props.widget_options.placeholder}
-            onKeyPress={this.handleInputEnter}
             onKeyDown={this.handleInputEnter}
             defaultValue={ this.getDefaultValue() }
           />
