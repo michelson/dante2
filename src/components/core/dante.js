@@ -12,9 +12,9 @@ import EmbedBlock from '../blocks/embed'
 import VideoBlock from '../blocks/video'
 import PlaceholderBlock from '../blocks/placeholder'
 
-import { 
-  resetBlockWithType, 
-  addNewBlockAt 
+import {
+  resetBlockWithType,
+  addNewBlockAt
 } from '../../model/index.js'
 
 class Dante {
@@ -42,7 +42,8 @@ class Dante {
     defaultOptions.read_only = false
     defaultOptions.spellcheck = false
     defaultOptions.title_placeholder = "Title"
-    defaultOptions.body_placeholder = "Write your story"
+    defaultOptions.body_placeholder = "Write your story",
+    defaultOptions.upload_storage = {};
 
     defaultOptions.widgets = [{
       title: 'add an image',
@@ -81,11 +82,6 @@ class Dante {
         insert_block: "image"
       },
       options: {
-        upload_url: options.upload_url,
-        upload_headers: options.upload_headers,
-        upload_formName: options.upload_formName,
-        upload_handler: options.image_upload_handler,
-        upload_callback: options.image_upload_callback,
         image_delete_callback: options.image_delete_callback,
         image_caption_placeholder: options.image_caption_placeholder || "Write caption for image (optional)"
       }
@@ -184,29 +180,29 @@ class Dante {
       ref: 'insert_tooltip',
       component: DanteTooltip,
       displayOnSelection: true,
-      selectionElements: ["unstyled", 
-                          "blockquote", 
-                          "ordered-list", 
-                          "unordered-list", 
-                          "unordered-list-item", 
-                          "ordered-list-item", 
-                          "code-block", 
-                          'header-one', 
-                          'header-two', 
-                          'header-three', 
+      selectionElements: ["unstyled",
+                          "blockquote",
+                          "ordered-list",
+                          "unordered-list",
+                          "unordered-list-item",
+                          "ordered-list-item",
+                          "code-block",
+                          'header-one',
+                          'header-two',
+                          'header-three',
                           'header-four'],
       widget_options: {
         placeholder: "Paste or type a link",
         block_types: [
           // {label: 'p', style: 'unstyled'},
-          { label: 'h2', style: 'header-one', type: "block" }, 
-          { label: 'h3', style: 'header-two', type: "block" }, 
-          { label: 'h4', style: 'header-three', type: "block" }, 
+          { label: 'h2', style: 'header-one', type: "block" },
+          { label: 'h3', style: 'header-two', type: "block" },
+          { label: 'h4', style: 'header-three', type: "block" },
           { label: 'blockquote', style: 'blockquote', type: "block" },
-          { label: 'insertunorderedlist', style: 'unordered-list-item', type: "block" }, 
-          { label: 'insertorderedlist', style: 'ordered-list-item', type: "block" }, 
-          { label: 'code', style: 'code-block', type: "block" }, 
-          { label: 'bold', style: 'BOLD', type: "inline" }, 
+          { label: 'insertunorderedlist', style: 'unordered-list-item', type: "block" },
+          { label: 'insertorderedlist', style: 'ordered-list-item', type: "block" },
+          { label: 'code', style: 'code-block', type: "block" },
+          { label: 'bold', style: 'BOLD', type: "inline" },
           { label: 'italic', style: 'ITALIC', type: "inline" }
         ]
       }
@@ -238,35 +234,44 @@ class Dante {
       headers: {},
     }
 
+    defaultOptions.upload_storage = {
+      url: null,
+      headers: null,
+      formName: null,
+      uploadAsBase64: false,
+      handler: null,
+      callback: null
+    }
+
     defaultOptions.default_wrappers = [
-    { className: 'graf--p', block: 'unstyled' }, 
+    { className: 'graf--p', block: 'unstyled' },
     { className: 'graf--h2', block: 'header-one' },
-    { className: 'graf--h3', block: 'header-two' }, 
-    { className: 'graf--h4', block: 'header-three' }, 
-    { className: 'graf--blockquote', block: 'blockquote' }, 
-    { className: 'graf--insertunorderedlist', block: 'unordered-list-item' }, 
-    { className: 'graf--insertorderedlist', block: 'ordered-list-item' }, 
-    { className: 'graf--code', block: 'code-block' }, 
-    { className: 'graf--bold', block: 'BOLD' }, 
+    { className: 'graf--h3', block: 'header-two' },
+    { className: 'graf--h4', block: 'header-three' },
+    { className: 'graf--blockquote', block: 'blockquote' },
+    { className: 'graf--insertunorderedlist', block: 'unordered-list-item' },
+    { className: 'graf--insertorderedlist', block: 'ordered-list-item' },
+    { className: 'graf--code', block: 'code-block' },
+    { className: 'graf--bold', block: 'BOLD' },
     { className: 'graf--italic', block: 'ITALIC' }]
 
     defaultOptions.continuousBlocks = [
-    "unstyled", 
-    "blockquote", 
-    "ordered-list", 
-    "unordered-list", 
-    "unordered-list-item", 
-    "ordered-list-item", 
+    "unstyled",
+    "blockquote",
+    "ordered-list",
+    "unordered-list",
+    "unordered-list-item",
+    "ordered-list-item",
     "code-block"
     ]
 
     defaultOptions.key_commands = {
       "alt-shift": [{ key: 65, cmd: 'add-new-block' }],
-      "alt-cmd": [{ key: 49, cmd: 'toggle_block:header-one' }, 
-                  { key: 50, cmd: 'toggle_block:header-two' }, 
+      "alt-cmd": [{ key: 49, cmd: 'toggle_block:header-one' },
+                  { key: 50, cmd: 'toggle_block:header-two' },
                   { key: 53, cmd: 'toggle_block:blockquote' }],
-      "cmd": [{ key: 66, cmd: 'toggle_inline:BOLD' }, 
-              { key: 73, cmd: 'toggle_inline:ITALIC' }, 
+      "cmd": [{ key: 66, cmd: 'toggle_inline:BOLD' },
+              { key: 73, cmd: 'toggle_inline:ITALIC' },
               { key: 75, cmd: 'insert:link' }]
     }
 
@@ -290,6 +295,7 @@ class Dante {
   }
 
   render() {
+    console.log(this.options);
     return this.editor = ReactDOM.render(
       <DanteEditor content={this.getContent()} config={this.options} />,
       document.getElementById(this.options.el)

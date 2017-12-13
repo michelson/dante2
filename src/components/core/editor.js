@@ -3,33 +3,33 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Immutable from 'immutable'
 import { Map, fromJS } from 'immutable'
-import { 
-  convertToRaw, 
-  convertFromRaw, 
-  CompositeDecorator, 
+import {
+  convertToRaw,
+  convertFromRaw,
+  CompositeDecorator,
   getDefaultKeyBinding,
-  ContentState, 
-  Editor, 
-  EditorState, 
-  Entity, 
-  RichUtils, 
-  DefaultDraftBlockRenderMap, 
-  SelectionState, 
+  ContentState,
+  Editor,
+  EditorState,
+  Entity,
+  RichUtils,
+  DefaultDraftBlockRenderMap,
+  SelectionState,
   Modifier
 } from 'draft-js'
 
-import { 
+import {
   convertToHTML,
-  //, convertFromHTML 
+  //, convertFromHTML
 } from 'draft-convert'
 
-import { 
-  addNewBlock, 
-  resetBlockWithType, 
-  updateDataOfBlock, 
-  //updateTextOfBlock, 
-  getCurrentBlock, 
-  addNewBlockAt 
+import {
+  addNewBlock,
+  resetBlockWithType,
+  updateDataOfBlock,
+  //updateTextOfBlock,
+  getCurrentBlock,
+  addNewBlockAt
 } from '../../model/index.js'
 
 import Link from '../decorators/link'
@@ -149,7 +149,8 @@ class DanteEditor extends React.Component {
       getLocks: this.getLocks,
       config: {
         xhr: this.props.config.xhr,
-        data_storage: this.props.config.data_storage
+        data_storage: this.props.config.data_storage,
+        upload_storage: this.props.config.upload_storage
       },
       editorState: this.state.editorState,
       editorContent: this.emitSerializedOutput()
@@ -169,7 +170,7 @@ class DanteEditor extends React.Component {
     if (this.props.content) {
       newEditorState = EditorState.set(this.decodeEditorContent(this.props.content), {decorator: this.decorator});
     }
-    this.onChange(newEditorState)      
+    this.onChange(newEditorState)
   }
 
   decodeEditorContent(raw_as_json) {
@@ -393,19 +394,18 @@ class DanteEditor extends React.Component {
 
   handleTooltipDisplayOn(prop, display) {
 
-    // for button click on after inline style set, 
+    // for button click on after inline style set,
     // avoids inline popver to reappear on previous selection
     if(this.state.read_only){
-      return  
+      return
     }
 
     if (display == null) {
       display = true
     }
-    
+
     return setTimeout(() => {
       const items = this.tooltipsWithProp(prop)
-      console.log(items)
       return items.map(o => {
         this.refs[o.ref].display(display)
         return this.refs[o.ref].relocate()
@@ -789,7 +789,7 @@ class DanteEditor extends React.Component {
 
   relocateTooltips() {
     if (this.state.read_only)
-      return 
+      return
 
     return this.tooltips.map(o => {
       return this.refs[o.ref].relocate()
@@ -867,7 +867,7 @@ class DanteEditor extends React.Component {
                     <hr className="section-divider" />
                   </div>
                   <div className="section-content">
-                    <div ref="richEditor" 
+                    <div ref="richEditor"
                         className="section-inner layoutSingleColumn"
                         onClick={ this.focus }>
                       <Editor
