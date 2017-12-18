@@ -29,7 +29,8 @@
     "draft-convert": "^1.2.3",
     "draft-js": "0.10.3",
     "draft-js-custom-styles": "^2.0.1",
-    "immutable": "^3.8.2"
+    "immutable": "^3.8.2",
+    "markdown-draft-js": "^0.6.0"
   },
   "devDependencies": {
     "babel-cli": "^6.11.4",
