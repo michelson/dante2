@@ -39801,9 +39801,21 @@ var DanteInlineTooltip = function (_React$Component) {
 
       // checkeamos si esta vacio
       this.display(block.getText().length === 0 && blockType === "unstyled");
+
+      var left = coords.left + window.pageXOffset;
+      var top = coords.top + window.pageYOffset;
+
+      if (this.props.widget_options.x_offset) {
+        left = this.props.widget_options.x_offset(left);
+      }
+
+      if (this.props.widget_options.y_offset) {
+        top = this.props.widget_options.y_offset(top);
+      }
+
       return this.setPosition({
-        top: coords.top + window.pageYOffset,
-        left: coords.left + window.pageXOffset - 60
+        top: top,
+        left: left
       });
 
       /*
@@ -40052,9 +40064,21 @@ var DanteImagePopover = function (_React$Component) {
         selectionBoundary = node.anchorNode.parentNode.parentNode.parentNode.getBoundingClientRect();
         var el = this.refs.image_popover;
         var padd = el.offsetWidth / 2;
+
+        var left = selectionBoundary.left + selectionBoundary.width / 2 - padd;
+        var top = selectionBoundary.top - parentBoundary.top;
+
+        if (this.props.widget_options.x_offset) {
+          left = this.props.widget_options.x_offset(left);
+        }
+
+        if (this.props.widget_options.y_offset) {
+          top = this.props.widget_options.y_offset(top);
+        }
+
         return this.setPosition({
-          top: selectionBoundary.top - parentBoundary.top + 60,
-          left: selectionBoundary.left + selectionBoundary.width / 2 - padd
+          top: top,
+          left: left
         });
       }
     } else {
@@ -40252,9 +40276,20 @@ var DanteAnchorPopover = function (_React$Component) {
     var parent = _reactDom2['default'].findDOMNode(this.props.editor);
     var parentBoundary = parent.getBoundingClientRect();
 
+    var left = selectionBoundary.left + selectionBoundary.width / 2 - padd;
+    var top = selectionBoundary.top - parentBoundary.top;
+
+    if (this.props.widget_options.x_offset) {
+      left = this.props.widget_options.x_offset(left);
+    }
+
+    if (this.props.widget_options.y_offset) {
+      top = this.props.widget_options.y_offset(top);
+    }
+
     return {
-      top: selectionBoundary.top - parentBoundary.top + 160,
-      left: selectionBoundary.left + selectionBoundary.width / 2 - padd
+      top: top,
+      left: left
     };
   };
 
@@ -40448,8 +40483,17 @@ var DanteTooltip = function (_React$Component) {
       return;
     }
 
-    var top = selectionBoundary.top - parentBoundary.top - -90 - 5;
+    var top = selectionBoundary.top - parentBoundary.top;
+
+    if (this.props.widget_options.y_offset) {
+      top = this.props.widget_options.y_offset(top);
+    }
+
     var left = selectionBoundary.left + selectionBoundary.width / 2 - padd;
+
+    if (this.props.widget_options.x_offset) {
+      left = this.props.widget_options.x_offset(left);
+    }
 
     if (!top || !left) {
       return;
@@ -41375,6 +41419,12 @@ var Dante = function () {
         displayOnSelection: true,
         selectionElements: ["unstyled", "blockquote", "ordered-list", "unordered-list", "unordered-list-item", "ordered-list-item", "code-block", 'header-one', 'header-two', 'header-three', 'header-four'],
         widget_options: {
+          x_offset: function x_offset(o) {
+            return o;
+          },
+          y_offset: function y_offset(o) {
+            return o + 90;
+          },
           placeholder: "Paste or type a link",
           block_types: [
           // {label: 'p', style: 'unstyled'},
@@ -41382,13 +41432,37 @@ var Dante = function () {
         }
       }, {
         ref: 'add_tooltip',
-        component: _addButton2['default']
+        component: _addButton2['default'],
+        widget_options: {
+          x_offset: function x_offset(o) {
+            return o - 60;
+          },
+          y_offset: function y_offset(o) {
+            return o;
+          }
+        }
       }, {
         ref: 'anchor_popover',
-        component: _link2['default']
+        component: _link2['default'],
+        widget_options: {
+          x_offset: function x_offset(o) {
+            return o;
+          },
+          y_offset: function y_offset(o) {
+            return o + 160;
+          }
+        }
       }, {
         ref: 'image_popover',
-        component: _image2['default']
+        component: _image2['default'],
+        widget_options: {
+          x_offset: function x_offset(o) {
+            return o;
+          },
+          y_offset: function y_offset(o) {
+            return o + 60;
+          }
+        }
       }];
 
       defaultOptions.xhr = {

@@ -1,5 +1,7 @@
 import React from 'react'
 
+import markdownString from '../../utils/markdown.js'
+
 class Debug extends React.Component {
 
   constructor() {
@@ -14,6 +16,7 @@ class Debug extends React.Component {
     this.toggleDisplay = this.toggleDisplay.bind(this)
     this.open = this.open.bind(this)
     this.render = this.render.bind(this)
+    this.handleMarkdown = this.handleMarkdown.bind(this)
     this.state = {
       output: "",
       display: "none"
@@ -65,6 +68,12 @@ class Debug extends React.Component {
       display: "block" })
   }
 
+  handleMarkdown(e){
+    e.preventDefault()
+    const raw_as_json = this.props.editor.emitSerializedOutput()
+    this.setState({output: markdownString(raw_as_json)}, this.open)
+  }
+
   render() {
     return (
       <div>
@@ -81,6 +90,10 @@ class Debug extends React.Component {
             </li>
             <li>
               <a href="#" onClick={ this.handleTestEmitAndDecode }>EDITOR STATE</a>
+            </li>
+
+            <li>
+              <a href="#" onClick={ this.handleMarkdown }>MARKDOWN</a>
             </li>
           </ul>
         </div>
