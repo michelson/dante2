@@ -16,6 +16,7 @@ import {
   getNode } from '../../model/index.js'
 
 import { getSelectionRect, getSelection } from "../../utils/selection.js"
+import { addNewBlocks } from "../../model"
 
 class DanteInlineTooltip extends React.Component {
 
@@ -133,23 +134,19 @@ class DanteInlineTooltip extends React.Component {
     return this.props.onChange(resetBlockWithType(this.props.editorState, 'placeholder', opts))
   }
 
-  insertImage(file) {
-    let opts = {
+  insertImages(fileList) {
+    const optsList = [].map.call(fileList, file => ({
       url: URL.createObjectURL(file),
       file
-    }
+    }));
 
-    return this.props.onChange(addNewBlock(this.props.editorState, 'image', opts))
+    return this.props.onChange(addNewBlocks(this.props.editorState, 'image', optsList));
   }
 
   handleFileInput(e) {
-    let fileList = e.target.files
-    // TODO: support multiple file uploads
-    /*
-    Object.keys(fileList).forEach (o)=>
-      @.insertImage(fileList[0])
-    */
-    return this.insertImage(fileList[0])
+    let fileList = e.target.files;
+
+    return this.insertImages(fileList);
   }
 
   handleInsertion(e){
