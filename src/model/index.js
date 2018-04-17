@@ -75,6 +75,15 @@ export const addNewBlock = (editorState, newType = "unstyled", initialData = {})
   return editorState;
 };
 
+export const addNewBlocks = (editorState, newType = "unstyled", optsList = []) => {
+  return [].reduce.call(optsList, (prevEditorState, opts) => {
+    const newEditorState = editorState === prevEditorState
+      ? prevEditorState
+      : addNewBlockAt(prevEditorState, getCurrentBlock(prevEditorState).getKey());
+
+      return addNewBlock(newEditorState, newType, opts);
+  }, editorState);
+};
 
 /*
 Changes the block type of the current block.
