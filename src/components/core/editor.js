@@ -393,8 +393,6 @@ class DanteEditor extends React.Component {
         config: dataBlock.options
       }
     }
-
-    return null
   }
 
   blockStyleFn(block) {
