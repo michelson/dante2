@@ -9,6 +9,7 @@ import {CodeBlockConfig} from '../editor/components/blocks/code'
 import {EmbedBlockConfig} from '../editor/components/blocks/embed'
 import {VideoBlockConfig} from '../editor/components/blocks/video'
 import {PlaceholderBlockConfig} from '../editor/components/blocks/placeholder'
+import {DividerBlockConfig} from "../editor/components/blocks/divider";
 
 import 'bulma/css/bulma.css'
 import Prism from 'prismjs';
@@ -27,6 +28,7 @@ import {version} from '../../package.json'
 import styled from 'react-emotion'
 import {Table} from './table'
 import Menu from './sidebar'
+
 //import Menu from 'docz-theme-default'
 
 const urlFor = (path)=>{
@@ -40,13 +42,13 @@ const isActive = (url)=>{
 const Theme = () => (
   <div>
     <Router>
-      <div> 
+      <div>
         <Header/>
         <Route exact path={urlFor('')} component={Demo} />
         <Route path={urlFor('/license')} component={License} />
         <Route path={urlFor('/docs')} component={Doc} />
         <Route path={urlFor('/:doc')} component={Doc} />
-      </div>                
+      </div>
     </Router>
   </div>
 
@@ -78,14 +80,14 @@ const Header = ()=>{
                 <Link to={urlFor('license')} className={`navbar-item ${isActive('/license')}`}>
                   License
                 </Link>
-              </div>                
+              </div>
 
               <div className="navbar-end">
 
 
-                <a href="https://github.com/michelson/dante2" 
-                  className="navbar-item" 
-                  data-tooltip="Fork me on github" 
+                <a href="https://github.com/michelson/dante2"
+                  className="navbar-item"
+                  data-tooltip="Fork me on github"
                   target="_blank">
                   <img src={githubLogo} alt="Fork me on github" height="28"/>
                 </a>
@@ -107,21 +109,27 @@ const License = ()=>{
 }
 
 const Demo = ()=>{
-  return <Dante content={demo} 
-                widgets={[
-                  ImageBlockConfig(),
-                  CodeBlockConfig(),
-                  EmbedBlockConfig(),
-                  VideoBlockConfig(),
-                  PlaceholderBlockConfig()
-                ]}
-                style={{
-                  margin: '0 auto',
-                  width: '60%',
-                  padding: '100px 0px'
-                }} 
-                read_only={false}
-              />
+  return <Dante content={demo}
+      widgets={[
+        ImageBlockConfig(),
+        CodeBlockConfig(),
+        EmbedBlockConfig(),
+        VideoBlockConfig(),
+        PlaceholderBlockConfig(),
+        DividerBlockConfig(),
+      ]}
+      style={{
+        margin: '0 auto',
+        width: '60%',
+        padding: '100px 0px'
+      }}
+      read_only={false}
+      data_storage={ {
+        interval: 10000,
+        save_handler: (context, content)=>{
+          //console.log(context, content)
+        }}}
+    />
 }
 
 
@@ -187,8 +195,8 @@ class Render extends React.Component {
     });
 
     const fmt =  {__html: Prism.highlight(
-                            code, 
-                            Prism.languages.jsx, 
+                            code,
+                            Prism.languages.jsx,
                             'jsx')
                   }
     return <PlayGroundContainer>
@@ -204,12 +212,12 @@ class Render extends React.Component {
 
 
 const Doc = ()=>{
-  return <div className="container-dis" 
+  return <div className="container-dis"
               style={{padding: '100px 0px'}}>
             <section className="section">
               <h1 className="title">Documentation</h1>
               <h2 className="subtitle">
-                Examples of Dante 2 editor 
+                Examples of Dante 2 editor
               </h2>
 
               <ThemeConfig>

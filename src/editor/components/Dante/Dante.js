@@ -22,7 +22,7 @@ import findEntities from '../../utils/find_entities'
 import MultiDecorator from 'draft-js-multidecorators'
 
 // custom blocks
-import DividerBlock from '../blocks/divider'
+
 import PropTypes from 'prop-types'
 
 // component implementation
@@ -52,10 +52,10 @@ class Dante extends React.Component {
 
 Dante.propTypes = {
   /** Editor content, it expects a null or a draft's EditorContent. */
-  content: PropTypes.string,
-  read_only: PropTypes.boolean,
-  //spellcheck: PropTypes.boolean,
-  //title_placeholder: PropTypes.string,
+  content: PropTypes.object,
+  read_only: PropTypes.bool,
+  spellcheck: PropTypes.bool,
+  title_placeholder: PropTypes.string,
   body_placeholder: PropTypes.string,
 
   xhr: PropTypes.shape({
@@ -66,7 +66,7 @@ Dante.propTypes = {
 
   data_storage: PropTypes.shape({
     url: PropTypes.string,
-    method: "POST",
+    method: PropTypes.string,
     success_handler: PropTypes.func,
     failure_handler: PropTypes.func,
     interval: PropTypes.integer
@@ -74,26 +74,13 @@ Dante.propTypes = {
 
   default_wrappers: PropTypes.arrayOf(PropTypes.shape({
      className: PropTypes.string.isRequired,
-     block: PropTypes.number.isRequired
+     block: PropTypes.string.isRequired
    })
   ),
 
   continuousBlocks: PropTypes.arrayOf(PropTypes.string),
 
-  /*key_commands: PropTypes.shape({
-      "alt-shift":  PropTypes.arrayOf(PropTypes.shape({
-                     key: PropTypes.string.isRequired,
-                     name: PropTypes.string.isRequired,
-                   }),
-      "alt-cmd": PropTypes.arrayOf(PropTypes.shape({
-                       key: PropTypes.string.isRequired,
-                       name: PropTypes.string.isRequired,
-                     }),
-      "cmd": PropTypes.arrayOf(PropTypes.shape({
-               key: PropTypes.string.isRequired,
-               name: PropTypes.string.isRequired,
-             })
-  })*/
+  key_commands: PropTypes.object
 
   /*character_convert_mapping: PropTypes.shape({
       '> ': "blockquote"
@@ -143,7 +130,8 @@ Dante.defaultProps = {
     { className: 'graf--insertorderedlist', block: 'ordered-list-item' },
     { className: 'graf--code', block: 'code-block' },
     { className: 'graf--bold', block: 'BOLD' },
-    { className: 'graf--italic', block: 'ITALIC' }
+    { className: 'graf--italic', block: 'ITALIC' },
+    { className: 'graf--divider', block: 'divider' }
   ],
 
   continuousBlocks: [
@@ -163,7 +151,9 @@ Dante.defaultProps = {
                   { key: 53, cmd: 'toggle_block:blockquote' }],
       "cmd": [{ key: 66, cmd: 'toggle_inline:BOLD' },
               { key: 73, cmd: 'toggle_inline:ITALIC' },
-              { key: 75, cmd: 'insert:link' }]
+              { key: 75, cmd: 'insert:link' },
+              { key: 13, cmd: 'toggle_block:divider' }
+      ]
   },
 
   character_convert_mapping: {
