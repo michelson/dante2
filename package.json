@@ -45,6 +45,7 @@
     "babel-plugin-prismjs": "^1.0.2",
     "bulma": "^0.7.1",
     "child-process-promise": "^2.2.1",
+    "cross-env": "^5.2.0",
     "css-loader": "^1.0.0",
     "docz": "^0.10.3",
     "docz-plugin-css": "^0.10.3",
