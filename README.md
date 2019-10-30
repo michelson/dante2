@@ -94,6 +94,36 @@ For development purposes we have a server, written in ruby, to handle file uploa
 
 and open http://localhost:9292
 
+## Contributors
+
+### Code Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/michelson/dante2/graphs/contributors"><img src="https://opencollective.com/dante2/contributors.svg?width=890&button=false" /></a>
+
+### Financial Contributors
+
+Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/dante2/contribute)]
+
+#### Individuals
+
+<a href="https://opencollective.com/dante2"><img src="https://opencollective.com/dante2/individuals.svg?width=890"></a>
+
+#### Organizations
+
+Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/dante2/contribute)]
+
+<a href="https://opencollective.com/dante2/organization/0/website"><img src="https://opencollective.com/dante2/organization/0/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/1/website"><img src="https://opencollective.com/dante2/organization/1/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/2/website"><img src="https://opencollective.com/dante2/organization/2/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/3/website"><img src="https://opencollective.com/dante2/organization/3/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/4/website"><img src="https://opencollective.com/dante2/organization/4/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/5/website"><img src="https://opencollective.com/dante2/organization/5/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/6/website"><img src="https://opencollective.com/dante2/organization/6/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/7/website"><img src="https://opencollective.com/dante2/organization/7/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/8/website"><img src="https://opencollective.com/dante2/organization/8/avatar.svg"></a>
+<a href="https://opencollective.com/dante2/organization/9/website"><img src="https://opencollective.com/dante2/organization/9/avatar.svg"></a>
+
 ### Open source license
 
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use Dante2 under the terms of the GPLv3.[Read more about Dante2's license](https://michelson.github.io/dante2/#/license).
