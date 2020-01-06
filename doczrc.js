@@ -8,6 +8,8 @@ export default {
   theme: 'src/docs/theme',
   hashRouter: true,
   base: basePath,
+  //protocol: 'http',
+  //port: '4001',
   //theme: 'src/docs/docz-theme-default/src/index.tsx',
   
   modifyBabelRc: (babelrc) => {

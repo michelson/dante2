@@ -69,7 +69,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "draft-convert": "^2.1.2",
-    "draft-js": "0.11.0-beta3",
+    "draft-js": "^0.11.3",
     "draft-js-custom-styles": "^2.1.1",
     "draft-js-export-html": "^1.2.0",
     "draft-js-multidecorators": "^1.0.0",

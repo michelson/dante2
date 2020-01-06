@@ -7,8 +7,8 @@
 /coverage
 .docz
 # production
-/build
-/package
+#/build
+#/package
 /docs
 .idea
 
