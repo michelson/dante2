@@ -1,7 +1,9 @@
+import React, { Component } from 'react';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
+import debounce from 'lodash/debounce';
+
 import Dante from '../editor/components/Dante/Dante.js'
 import {Lorem, h1} from '../site/data/poc.js'
-
-import React, {useState} from 'react'
 
 
 export default class Editor extends React.Component {
@@ -23,7 +25,7 @@ export default class Editor extends React.Component {
   render(){
     return (
 
-      <Dante 
+      <Dante
         content={this.state.content}
         onChange={this.saveHandler}
         /*data_storage={
@@ -36,13 +38,8 @@ export default class Editor extends React.Component {
     )
   }
 
-  
+
 }
-
-
-import React, { Component } from 'react';
-import { EditorState, Editor, convertToRaw, convertFromRaw } from 'draft-js';
-import debounce from 'lodash/debounce';
 
 class App extends Component {
   constructor(props) {
