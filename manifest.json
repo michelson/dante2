@@ -1,10 +1,10 @@
 {
-  "vendors.js": "/dante2/static/js/vendors.51eda37c.js",
-  "app.js": "/dante2/static/js/app.1b2d6912.js",
+  "vendors.js": "/dante2/static/js/vendors.069c4061.js",
+  "app.js": "/dante2/static/js/app.6ddbfc20.js",
   "src-ajax.js": "/dante2/static/js/src-ajax.289eb634.js",
-  "src-content.js": "/dante2/static/js/src-content.fa950fa2.js",
-  "src-character-convert-mapping.js": "/dante2/static/js/src-character-convert-mapping.954b8f0c.js",
-  "src-content-update.js": "/dante2/static/js/src-content-update.52f98daf.js",
+  "src-character-convert-mapping.js": "/dante2/static/js/src-character-convert-mapping.21a91259.js",
+  "src-content.js": "/dante2/static/js/src-content.2afa71ab.js",
+  "src-content-update.js": "/dante2/static/js/src-content-update.549f4281.js",
   "src-continuous-blocks.js": "/dante2/static/js/src-continuous-blocks.9b2ea3e4.js",
   "src-data-storage.js": "/dante2/static/js/src-data-storage.80c5882d.js",
   "src-debug.js": "/dante2/static/js/src-debug.38ecf1a3.js",
@@ -14,6 +14,6 @@
   "src-key-commands.js": "/dante2/static/js/src-key-commands.3733f064.js",
   "src-tooltips.js": "/dante2/static/js/src-tooltips.33c267ef.js",
   "src-widgets.js": "/dante2/static/js/src-widgets.5c0c2257.js",
-  "runtime~app.js": "/dante2/static/js/runtime~app.ee2a682ead3d722c3a26.js",
+  "runtime~app.js": "/dante2/static/js/runtime~app.bea5633a3943612bb1d2.js",
   "index.html": "/dante2/index.html"
 }
