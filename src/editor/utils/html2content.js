@@ -84,6 +84,12 @@ let customHTML2Content = function(HTML, blockRn){
   
   tempDoc.querySelectorAll('img').forEach( item=> imgReplacer(item))
 
+  // REPLACE NEW LINES WITH EMPTY SPACE WHEN COPY PASTING FROM WORD
+  var paras = tempDoc.getElementsByTagName('P');
+  for (var i = 0; i < paras.length; i++) {
+    paras[i].innerHTML = paras[i].innerHTML.replace(/(?:\r\n|\r|\n)/g, '');
+  };
+  
   // use DraftJS converter to do initial conversion. I don't provide DOMBuilder and
   // blockRenderMap arguments here since it should fall back to its default ones, which are fine
   // console.log(tempDoc.body.innerHTML)
