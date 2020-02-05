@@ -60,7 +60,7 @@ export default class DanteEditor extends React.Component {
       },
       'paragraph': {
         wrapper: null,
-        element: 'div'
+        element: 'p'
       },
       'placeholder': {
         wrapper: null,
