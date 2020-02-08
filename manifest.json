@@ -1,6 +1,6 @@
 {
   "vendors.js": "/dante2/static/js/vendors.069c4061.js",
-  "app.js": "/dante2/static/js/app.43ee3757.js",
+  "app.js": "/dante2/static/js/app.adb425ca.js",
   "src-ajax.js": "/dante2/static/js/src-ajax.289eb634.js",
   "src-character-convert-mapping.js": "/dante2/static/js/src-character-convert-mapping.21a91259.js",
   "src-content.js": "/dante2/static/js/src-content.2afa71ab.js",
@@ -14,6 +14,6 @@
   "src-key-commands.js": "/dante2/static/js/src-key-commands.3733f064.js",
   "src-tooltips.js": "/dante2/static/js/src-tooltips.33c267ef.js",
   "src-widgets.js": "/dante2/static/js/src-widgets.5c0c2257.js",
-  "runtime~app.js": "/dante2/static/js/runtime~app.dafbbd6e8809c8e55897.js",
+  "runtime~app.js": "/dante2/static/js/runtime~app.145c74867f9fa7592eab.js",
   "index.html": "/dante2/index.html"
 }
