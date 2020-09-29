@@ -1,4 +1,6 @@
 # Dante 2 - The rematch
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmichelson%2Fdante2.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmichelson%2Fdante2?ref=badge_shield)
+
 
 ## just another medium clone built on top of DraftJs
 
@@ -98,6 +100,9 @@ and open http://localhost:9292
 
 If you are creating an open source application under a license compatible with the [GNU GPL license v3](https://www.gnu.org/licenses/gpl-3.0.html), you may use Dante2 under the terms of the GPLv3.[Read more about Dante2's license](https://michelson.github.io/dante2/#/license).
 
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmichelson%2Fdante2.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmichelson%2Fdante2?ref=badge_large)
 
 ### Alternatives
 
