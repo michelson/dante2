@@ -286,6 +286,7 @@ export const AnchorStyle = styled.div`
   font-weight: 400;
   font-style: normal;
   text-rendering: optimizeLegibility;
+  background: transparent;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -moz-font-feature-settings: "liga" on;
