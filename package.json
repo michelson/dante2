@@ -78,7 +78,7 @@
     "prismjs": "^1.15.0",
     "react": "^16.8.0",
     "react-color": "^2.13.8",
-    "react-dev-utils": "^5.0.0",
+    "react-dev-utils": "^11.0.4",
     "react-dom": "^16.2.0",
     "react-popper": "^1.0.0",
     "react-select": "^2.0.0"
