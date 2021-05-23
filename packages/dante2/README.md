@@ -82,10 +82,28 @@ Then open http://localhost:8080
 
 ### Building
 
-+ `npm dante_build` or `yarn dante_build`
++ `npm build` or `yarn build`
 
-+ dev install:
-lerna bootstrap
+#### Upload test server (optional)
+
+For development purposes we have a server, written in ruby, to handle file uploading
+ 
++ `bundle install`
+
++ `bundle exec rackup`
+
+and open http://localhost:9292
+
+### Development
+
+dev server
++ yarn dev
+
+install deps
++ lerna bootstrap
+
+build
++ lerna run build --scope Dante2  --stream
 
 ### Open source license
 
@@ -95,7 +113,3 @@ If you are creating an open source application under a license compatible with t
 ### Alternatives
 
 If you are looking for alternatives you can always use the [MIT licensed Dante (1)](https://michelson.github.io/Dante) or choose along others [medium clones](http://howtox.com/medium-editor-clones-in-js) or check out [many many awesome draft-js based editors](https://github.com/nikgraf/awesome-draft-js)
-
-### Acknowledgments
-
-The code from `tools` is based on the build tools from [ReactBoostrap](https://github.com/react-bootstrap/react-bootstrap)
